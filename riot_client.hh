@@ -67,16 +67,6 @@ public:
 	}
 
 	bool init( ) {
-		const auto sessions_req = Get(
-			cpr::Url{ std::string( local_url ).append( R"(product-session/v1/external-sessions)" ) },
-			cpr::Header{ { "Authorization", local_authorization } },
-			cpr::VerifySsl{ false }
-		);
-		if ( sessions_req.error.code == cpr::ErrorCode::OK && nlohmann::json::accept( sessions_req.text ) ) {
-			const auto parsed_sessions = nlohmann::json::parse( sessions_req.text );
-
-		}
-
 		const auto req = Get(
 			cpr::Url{ std::string( local_url ).append( R"(entitlements/v1/token)" ) },
 			cpr::Header{ { "Authorization", local_authorization } },
